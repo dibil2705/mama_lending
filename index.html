@@ -10,7 +10,7 @@
       transition: opacity 180ms ease;
       margin: 0;
       padding: 0;
-      background: #efeff0;
+      background: #ffffff;
       font-family: 'Montserrat', sans-serif;
       color: #4a4a4a;
       min-height: 100vh;
@@ -25,6 +25,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      background-color: #ffffff;
       z-index: -2;
       pointer-events: none;
     }
@@ -34,7 +35,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: #efeff0 url('./background.webp') center/contain no-repeat;
+      background: #ffffff url('./background.webp') center/contain no-repeat;
       background-size: auto 100%;
       z-index: -3; /* ниже видео как запасной фон */
       pointer-events: none;
@@ -129,9 +130,9 @@
     }
     .photos-row img {
       width: 100%;
-      height: auto;
+      height: 220px;
       object-fit: cover;
-      object-position: center 70%;
+      object-position: center top;
       border-radius: 14px;
     }
 
@@ -494,7 +495,7 @@
     <div class="glass">
       <h1 class="name">Пономаренко Лариса</h1>
       <p>Профессиональный маркетолог.</p>
-      <img src="./katya.webp" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:50%; margin:16px auto 0; display:block;">
+      <img src="./main.webp" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:50%; margin:16px auto 0; display:block;">
       <a class="btn">Записаться на консультацию</a>
     </div>
 
@@ -510,7 +511,7 @@
         <p>Хорошо понимаю, как маркетплейсы работают изнутри: <strong><em>комиссии</em></strong>, <strong><em>ранжирование</em></strong>, <strong><em>ценообразование</em></strong>, <strong><em>требования к контенту и поставкам</em></strong>.</p>
 
         <div class="photos-row">
-          <img src="./pic/1.jpg" style="object-position:center 65%;">
+          <img src="./pic/1.jpg">
           <img src="./pic/2.jpg">
         </div>
       </div>
@@ -549,10 +550,10 @@
 
     <div class="contact-section">
       <h2>Контакты</h2>
-      <a class="contact-btn" href="tel:+79278151530">Телефон</a>
-      <a class="contact-btn" href="https://t.me/l4rpon" target="_blank" rel="noopener">Телеграм</a>
+      <a class="contact-btn" href="tel:+79278151530">Phone</a>
+      <a class="contact-btn" href="https://t.me/l4rpon" target="_blank" rel="noopener">Telegram</a>
       <a class="contact-btn" href="https://vk.com/id10656332" target="_blank" rel="noopener">VK</a>
-      <a class="contact-btn" href="mailto:larpon@list.ru">Почта</a>
+      <a class="contact-btn" href="mailto:larpon@list.ru">Email</a>
     </div>
 
   </div>
@@ -565,12 +566,11 @@
     </div>
 
     <div class="panel-scroll">
-      <p class="modal-lead"><strong>Заполните анкету</strong>, чтобы воспользоваться <strong>20-минутной бесплатной диагностикой</strong>, чтобы мы могли вместе понять ваш <em>уникальный путь к здоровью</em>.</p>
       <form id="consultation-form" class="modal-form">
         <input name="name" class="modal-input" placeholder="Как вас зовут?" required>
         <input name="phone" class="modal-input" placeholder="Введите ваш номер телефона" required>
         <input name="email" class="modal-input" placeholder="Введите ваш e-mail" required>
-        <textarea name="request" class="modal-textarea" placeholder="Что вас беспокоит? Какой ваш запрос на консультацию?" rows="4" required></textarea>
+        <textarea name="request" class="modal-textarea" placeholder="Комментарий" rows="4" required></textarea>
 
         <label class="modal-consent"><input type="checkbox" required> Согласие с политикой конфиденциальности</label>
         <label class="modal-consent"><input type="checkbox" required> Даю согласие на получение информационных и маркетинговых рассылок</label>
@@ -586,7 +586,7 @@
 <div id="info-modal" class="modal">
   <div class="glass modal-panel">
     <div class="panel-head">
-      <h2 id="info-title">Панель</h2>
+      <h2 id="info-title">Мой подход</h2>
       <div id="info-close" class="modal-x">×</div>
     </div>
     <div id="info-body" class="panel-scroll"></div>
@@ -620,7 +620,7 @@
   const followupEl = document.getElementById('form-followup');
 
   const titleMap = {
-    approach: 'Мой подход (холистический, интегративный)',
+    approach: 'Мой подход',
     formats: 'Форматы работы',
     partners: 'Партнеры'
   };
