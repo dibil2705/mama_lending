@@ -19,6 +19,16 @@
       isolation: isolate; /* важно для Яндекс.Браузера / стэкинга */
     }
 
+    .background-video {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+    }
+
     /* Keep background size stable (always viewport), even when content hides */
     body::before {
       content: "";
@@ -26,7 +36,7 @@
       inset: 0;
       background: #efeff0 url('./background.webp') center/contain no-repeat;
       background-size: auto 100%;
-      z-index: -1; /* не -2, иначе в некоторых Chromium может пропасть */
+      z-index: -3; /* ниже видео как запасной фон */
       pointer-events: none;
 
     }
@@ -498,6 +508,7 @@
 </head>
 <body>
 
+  <video id="background-video" class="background-video" autoplay muted playsinline></video>
   
   <div class="wrap">
 
@@ -871,6 +882,37 @@
         if (followupEl) followupEl.style.display = 'none';
       }
     });
+  }
+
+  const backgroundVideo = document.getElementById('background-video');
+  const videoSources = [
+    './video/1.mp4',
+    './video/2.mp4',
+    './video/3.mp4',
+    './video/4.mp4'
+  ];
+  const pauseBetweenVideosMs = 4000;
+  let currentVideoIndex = 0;
+
+  const playBackgroundVideo = () => {
+    if (!backgroundVideo || videoSources.length === 0) return;
+    backgroundVideo.src = videoSources[currentVideoIndex];
+    backgroundVideo.load();
+    const playPromise = backgroundVideo.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {});
+    }
+  };
+
+  if (backgroundVideo) {
+    backgroundVideo.addEventListener('ended', () => {
+      window.setTimeout(() => {
+        currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+        playBackgroundVideo();
+      }, pauseBetweenVideosMs);
+    });
+
+    playBackgroundVideo();
   }
 </script>
 
